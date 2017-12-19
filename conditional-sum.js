@@ -1,18 +1,24 @@
 
 var conditionalSum = function(values, condition) {
-  let reducer;
+  let sum = 0;
+  let test;
   switch(condition) {
     case 'even':
-      reducer = (accumulator, currentValue) => currentValue % 2 === 0 ? accumulator + currentValue : accumulator;
+      test = (currentValue) => currentValue % 2 === 0;
       break;
     case 'odd':
-      reducer = (accumulator, currentValue) => currentValue % 2 === 1 ? accumulator + currentValue : accumulator;
+      test = (currentValue) => currentValue % 2 === 1;
       break;
     default:
-      reducer = (accumulator, currentValue) => accumulator + currentValue;
+      test = () => true;
       break;
   }
-  return values.reduce(reducer, 0);
+  for (let currentValue of values){
+    if (test(currentValue) === true){
+      sum += currentValue;
+    }
+  }
+  return sum;
 };
 
 /* eslint-disable no-console */
