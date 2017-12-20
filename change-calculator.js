@@ -1,3 +1,18 @@
+var getChangeAmounts = function(changeTotal, denominations) {
+  var remainder = changeTotal;
+  var change = {};
+  for (var denominationName in denominations) {
+    if (denominations.hasOwnProperty(denominationName)) {
+      var denominationValue = denominations[denominationName];
+      if (remainder >= denominationValue) {
+        change[denominationName] = Math.floor(remainder / denominationValue);
+        remainder %= denominationValue;
+      }
+    }
+  }
+  return change;
+};
+
 var calculateChange = function(total, cash) {
   var denominations = {
     'twentyDollar': 20,
@@ -10,18 +25,8 @@ var calculateChange = function(total, cash) {
     'nickel': 0.05,
     'penny': 0.01
   };
-  var remainder = cash - total;
-  var change = {};
-  for (var denominationName in denominations) {
-    if (denominations.hasOwnProperty(denominationName)) {
-      var denominationValue = denominations[denominationName];
-      if (remainder >= denominationValue) {
-        change[denominationName] = Math.floor(remainder / denominationValue);
-        remainder %= denominationValue;
-      }
-    }
-  }
-  return change;
+  var changeTotal = cash - total;
+  return getChangeAmounts(changeTotal, denominations);
 };
 
 console.log(calculateChange(17.87, 20));
