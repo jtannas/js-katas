@@ -4,10 +4,10 @@ String.prototype.sentenceCase = function() {
 
 var camelCase = function(inputString) {
   var words = inputString.split(' ');
-  for (var i = 0; i < words.length; i++){
+  words[0] = words[0].toLowerCase();
+  for (var i = 1; i < words.length; i++){
     words[i] = words[i].sentenceCase();
   }
-  words[0] = words[0].toLowerCase();
   return words.join('');
 };
 
