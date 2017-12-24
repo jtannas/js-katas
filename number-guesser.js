@@ -22,7 +22,7 @@ var main = function(){
     } else if (guess > randNumber){
       console.log('Too High!');
     }
-    previousGuesses.add(guess);
+    if (!isNaN(guess)) { previousGuesses.add(guess); }
   } while (!previousGuesses.has(randNumber));
   console.log('You got it! You took ' + previousGuesses.size + ' attempts!');
 };
