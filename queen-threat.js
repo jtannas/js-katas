@@ -1,3 +1,4 @@
+'use strict';
 function ChessBoard(){
   var size = 8;
   var grid = new Array(size);
@@ -22,7 +23,7 @@ ChessBoard.shareDiagonal = function(position1, position2){
   return Math.abs(rowDiff) === Math.abs(columnDiff);
 };
 
-myChessBoard = new ChessBoard();
+var myChessBoard = new ChessBoard();
 
 var queenThreat = function(queen1, queen2){
   myChessBoard = new ChessBoard();
